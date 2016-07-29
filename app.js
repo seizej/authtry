@@ -9,7 +9,8 @@ var passport = require('passport');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var  jwt = require('jwt-simple');
-mongoose.connect('mongodb://localhost/authtry');
+var config = require('./config/database');
+mongoose.connect(config.database);
 var app = express();
 
 // view engine setup
@@ -27,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 
 var User = require('./app/models/user');
-var config = require('./config/database');
+
 require('./config/passport')(passport);
 var apiRoutes = express.Router();
 
